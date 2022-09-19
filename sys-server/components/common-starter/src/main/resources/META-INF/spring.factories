@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.sys.starter.AutoCommonConfiguration,\
+com.sys.starter.JacksonAutoConfiguration,\
+com.sys.starter.RedisCacheAutoConfiguration,\
+com.sys.starter.WebMvcConfiguration

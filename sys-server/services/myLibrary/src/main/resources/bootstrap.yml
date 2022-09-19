@@ -1,0 +1,63 @@
+# Spring
+spring:
+  profiles:
+    # 环境配置
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+#-Dspring.profiles.active=local
+server:
+  tomcat: #默认nio1
+    connection-timeout: 10s
+    uri-encoding: UTF-8
+    keep-alive-timeout: 15s
+    max-keep-alive-requests: 500
+    accept-count: 1000
+    min-spare-threads: 20
+    max-threads: 400
+    max-connections: 5000
+    max-http-form-post-size: 10MB
+  compression:
+    enabled: false # true开启gzip
+    min-response-size: 2KB
+    mime-types:
+      - application/json
+      - application/javascript
+      - text/css
+      - application/xmls
+      - text/javascript
+      - text/html
+      - text/xml
+      - text/plain
+
+
+
+  mvc:
+    throw-exception-if-no-handler-found: false #404返回json,没有controller,则抛出异常
+    servlet:
+      load-on-startup: 1
+
+# actuator 监控配置
+management:
+  #server:
+  #  port: xxxx  # actuator端口,默认使用顶部的server.port
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"  # jmx metrics
+    web:
+      base-path: /eip-demo/actuator  # 监控检查的contextPath
+      exposure:
+        include: "*"  # 默认值访问health,info端点; *暴露所有端点
+  endpoint:
+    health:
+      show-details: always  # 获得健康检查中所有指标的详细信息
+    info:
+      cache:
+        time-to-live: 10s # 可以缓存响应的最长时间
+  health:
+    mail:
+      enabled: false
